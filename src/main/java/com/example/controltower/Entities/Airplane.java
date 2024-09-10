@@ -2,6 +2,8 @@ package com.example.controltower.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Airplane {
     @Id
@@ -12,6 +14,9 @@ public class Airplane {
     @ManyToOne
     @JoinColumn(name = "airport_Id")
     private Airport airport;
+
+    @OneToMany(mappedBy = "airplane",cascade = CascadeType.ALL)
+    private Set<Flights> flights;
 
     public String getAirplaneId() {
         return airplaneId;

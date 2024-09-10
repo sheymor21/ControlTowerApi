@@ -24,7 +24,7 @@ public class AirplaneController {
         airplaneService.save(dto);
     }
 
-    @PutMapping
+    @PutMapping("/ChangeAirport")
     public void changeAirport(@RequestBody ChangeAirportDTO dto) {
         airplaneService.changeAirport(dto);
     }

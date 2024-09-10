@@ -18,6 +18,8 @@ public class Airport {
     @OneToMany(mappedBy = "airport",cascade = CascadeType.ALL)
     private Set<Airplane> airplanes;
 
+    @OneToMany(mappedBy = "airport",cascade = CascadeType.ALL)
+    private Set<Flights> flights;
 
     public String getAirportName() {
         return airportName;
