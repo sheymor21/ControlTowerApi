@@ -16,6 +16,7 @@ public class Flights {
     private String status;
     private String airportDestinationCode;
 
+
     @ManyToOne
     @JoinColumn(name = "airplane_Id")
     private Airplane airplane;

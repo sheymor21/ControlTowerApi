@@ -1,5 +1,6 @@
 package com.sheymor.controltower.Controllers;
 
+import com.sheymor.controltower.Dto.Flight.ChangeStatusDTO;
 import com.sheymor.controltower.Dto.Flight.CreateFlightDTO;
 import com.sheymor.controltower.Dto.Flight.GetFlightsDTO;
 import com.sheymor.controltower.Services.FlightService;
@@ -19,7 +20,7 @@ public class FlightsControllers {
     }
 
     @PostMapping
-    public void createFlight(CreateFlightDTO dto) {
+    public void createFlight(@RequestBody CreateFlightDTO dto) {
         flightService.save(dto);
     }
 
@@ -31,5 +32,10 @@ public class FlightsControllers {
     @GetMapping("/Airplane/{code}")
     public Iterable<GetFlightsDTO> findByAirplane(@PathVariable String code) {
         return flightService.findByAirplane(code);
+    }
+
+    @PutMapping("/ChangeStatus")
+    public void changeStatus(@RequestBody ChangeStatusDTO dto) {
+        flightService.changeStatus(dto);
     }
 }

@@ -1,15 +1,20 @@
 package com.sheymor.controltower.Dto.Flight;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class GetFlightsDTO {
     private String flightId;
     private String airplaneCode;
     private String airportHomeCode;
+    private String airportDestinationCode;
     private Date departureTime;
     private Date arrivalTime;
     private String status;
-    private String airportDestinationCode;
 
     public void setAirplaneCode(String airplaneCode) {
         this.airplaneCode = airplaneCode;
