@@ -48,3 +48,6 @@ This project is built using Jakarta EE with Jakarta imports, Spring Data JPA, an
    http://localhost:8080/doc/swagger-ui/index.html
    ```
    Here you will find the interactive API documentation where you can explore and test the available endpoints.
+## Author
+
+- [sheymor21](https://github.com/sheymor21)
