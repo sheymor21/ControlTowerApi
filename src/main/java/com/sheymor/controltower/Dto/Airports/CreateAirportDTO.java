@@ -1,7 +1,10 @@
 package com.sheymor.controltower.Dto.Airports;
 
+import com.sheymor.controltower.Validations.Customs.ValidAirportCodeNotPresent;
+
 public class CreateAirportDTO {
     private String name;
+    @ValidAirportCodeNotPresent
     private String code;
     private String city;
     private String country;

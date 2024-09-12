@@ -4,11 +4,18 @@ import com.sheymor.controltower.Dto.Flight.ChangeStatusDTO;
 import com.sheymor.controltower.Dto.Flight.CreateFlightDTO;
 import com.sheymor.controltower.Dto.Flight.GetFlightsDTO;
 import com.sheymor.controltower.Services.FlightService;
+import com.sheymor.controltower.Validations.Customs.ValidAirplaneCodePresent;
+import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Flights")
+@Validated
 public class FlightsControllers {
 
     private final FlightService flightService;
@@ -20,22 +27,24 @@ public class FlightsControllers {
     }
 
     @PostMapping
-    public void createFlight(@RequestBody CreateFlightDTO dto) {
+    public ResponseEntity<String> createFlight(@RequestBody @Valid CreateFlightDTO dto) {
         flightService.save(dto);
+        return new ResponseEntity<>("Flight created successfully", HttpStatus.CREATED);
     }
 
     @GetMapping("/Airport/{code}")
-    public Iterable<GetFlightsDTO> findByAirport(@PathVariable String code) {
-        return flightService.findByAirport(code);
+    public ResponseEntity<Iterable<GetFlightsDTO>> findByAirport(@PathVariable @ValidAirportCodePresent String code) {
+        return new ResponseEntity<>(flightService.findByAirport(code), HttpStatus.OK);
     }
 
     @GetMapping("/Airplane/{code}")
-    public Iterable<GetFlightsDTO> findByAirplane(@PathVariable String code) {
-        return flightService.findByAirplane(code);
+    public ResponseEntity<Iterable<GetFlightsDTO>> findByAirplane(@PathVariable @ValidAirplaneCodePresent String code) {
+        return new ResponseEntity<>(flightService.findByAirplane(code), HttpStatus.OK);
     }
 
     @PutMapping("/ChangeStatus")
-    public void changeStatus(@RequestBody ChangeStatusDTO dto) {
+    public ResponseEntity<String> changeStatus(@RequestBody ChangeStatusDTO dto) {
         flightService.changeStatus(dto);
+        return new ResponseEntity<>("Change successfully", HttpStatus.OK);
     }
 }

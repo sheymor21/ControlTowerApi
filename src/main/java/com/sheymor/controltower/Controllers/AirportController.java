@@ -4,11 +4,17 @@ import com.sheymor.controltower.Dto.Airports.CreateAirportDTO;
 import com.sheymor.controltower.Dto.Airports.UpdateAirportDTO;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Services.AirportService;
+import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Airports")
+@Validated
 public class AirportController {
     private final AirportService airportService;
 
@@ -18,22 +24,25 @@ public class AirportController {
     }
 
     @PostMapping
-    public void addAirport(@RequestBody CreateAirportDTO airport) {
+    public ResponseEntity<String> addAirport(@Valid @RequestBody CreateAirportDTO airport) {
         airportService.save(airport);
+        return new ResponseEntity<>("Airport added successfully", HttpStatus.CREATED);
     }
 
     @GetMapping
-    public Iterable<Airport> getAllAirports() {
-        return airportService.findAll();
+    public ResponseEntity<Iterable<Airport>> getAllAirports() {
+        return new ResponseEntity<>(airportService.findAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{code}")
-    public void deleteAirport(@PathVariable String code) {
+    public ResponseEntity<String> deleteAirport(@PathVariable @ValidAirportCodePresent String code) {
         airportService.deleteByCode(code);
+        return new ResponseEntity<>("Airport deleted successfully", HttpStatus.OK);
     }
 
     @PutMapping("/{code}")
-    public void updateAirport(@PathVariable String code, @RequestBody UpdateAirportDTO dto) {
+    public ResponseEntity<String> updateAirport(@PathVariable @ValidAirportCodePresent String code, @RequestBody @Valid UpdateAirportDTO dto) {
         airportService.updateByAirport(code, dto);
+        return new ResponseEntity<>("Airport updated successfully", HttpStatus.OK);
     }
 }
