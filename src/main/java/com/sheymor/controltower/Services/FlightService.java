@@ -3,6 +3,7 @@ package com.sheymor.controltower.Services;
 import com.sheymor.controltower.Dto.Flight.ChangeStatusDTO;
 import com.sheymor.controltower.Dto.Flight.CreateFlightDTO;
 import com.sheymor.controltower.Dto.Flight.GetFlightsDTO;
+import com.sheymor.controltower.Dto.Flight.UpdateFlightsDTO;
 import com.sheymor.controltower.Entities.Airplane;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Entities.Flights;
@@ -77,6 +78,29 @@ public class FlightService {
             flightRepository.save(flight);
         } else {
             throw new RuntimeException("incorrect flight id");
+        }
+    }
+
+    @Transactional
+    public void updateByFlight(String flightId, UpdateFlightsDTO dto) {
+        Optional<Flights> optionalFlights = flightRepository.findById(flightId);
+        if (optionalFlights.isPresent()) {
+            Flights flight = optionalFlights.get();
+            Optional<Airport> optionalAirport = airportRepository.findByCode(dto.getAirportHomeCode());
+            Optional<Airport> optionalAirportDestination = airportRepository.findByCode(dto.getAirportDestinationCode());
+            Optional<Airplane> optionalAirplane = airplaneRepository.findByCode(dto.getAirplaneCode());
+
+            if (optionalAirplane.isPresent() && optionalAirport.isPresent() && optionalAirportDestination.isPresent()) {
+
+                flight.setAirportHomeCode(dto.getAirportHomeCode());
+                flight.setAirportDestinationCode(dto.getAirportDestinationCode());
+                flight.setAirplaneCode(dto.getAirplaneCode());
+                flight.setAirport(optionalAirport.get());
+                flight.setAirplane(optionalAirplane.get());
+                flight.setArrivalTime(dto.getArrivalTime());
+                flight.setDepartureTime(dto.getDepartureTime());
+                flightRepository.save(flight);
+            }
         }
     }
 }

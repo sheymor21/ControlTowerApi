@@ -1,6 +1,9 @@
 package com.sheymor.controltower.Dto.Flight;
 
+import com.sheymor.controltower.Validations.Customs.ValidFlightId;
+
 public class ChangeStatusDTO {
+    @ValidFlightId
     private String flightId;
     private Status status;
 

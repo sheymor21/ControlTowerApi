@@ -9,6 +9,6 @@ public interface FlightRepository extends JpaRepository<Flights, String> {
     @Query("select f from Flights f where f.airplaneCode = :airplaneCode")
     Iterable<Flights> findByAirplaneCode(@Param("airplaneCode") String airplaneCode);
 
-    @Query("select f from Flights f where f.airportHomeCode = :airportHomeCode")
+    @Query("select f from Flights f where f.airportHomeCode = :airportHomeCode or f.airportDestinationCode = :airportHomeCode")
     Iterable<Flights> findByAirportHomeCode(@Param("airportHomeCode") String airportHomeCode);
 }
