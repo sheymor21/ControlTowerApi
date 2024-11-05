@@ -3,9 +3,9 @@ package com.sheymor.controltower.Controllers;
 import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
 import com.sheymor.controltower.Dto.Airports.AirportGetDTO;
 import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
-import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Services.AirportService;
 import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Airports")
+@Tag(name = "Airport Controller")
 public class AirportController {
     private final AirportService airportService;
 

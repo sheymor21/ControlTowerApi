@@ -5,6 +5,7 @@ import com.sheymor.controltower.Dto.Passenger.PassengerGetDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerUpdateDTO;
 import com.sheymor.controltower.Services.PassengerService;
 import com.sheymor.controltower.Validations.Customs.ValidFlightId;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("Passenger")
+@Tag(name = "Passenger Controller")
 public class PassengerController {
     private final PassengerService passengerService;
 

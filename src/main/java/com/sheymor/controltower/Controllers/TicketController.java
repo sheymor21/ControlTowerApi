@@ -2,9 +2,9 @@ package com.sheymor.controltower.Controllers;
 
 import com.sheymor.controltower.Dto.Ticket.FlightTicketAddDTO;
 import com.sheymor.controltower.Services.PassengerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("Ticket")
-@Validated
+@Tag(name = "Ticket Controller")
 public class TicketController {
     private final PassengerService passengerService;
 

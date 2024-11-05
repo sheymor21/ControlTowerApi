@@ -8,6 +8,7 @@ import com.sheymor.controltower.Services.FlightService;
 import com.sheymor.controltower.Validations.Customs.ValidAirplaneCodePresent;
 import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
 import com.sheymor.controltower.Validations.Customs.ValidFlightId;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Flights")
-@Validated
+@Tag(name = "Flights Controller")
 public class FlightsController {
 
     private final FlightService flightService;
