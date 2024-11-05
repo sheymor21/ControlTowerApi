@@ -27,6 +27,7 @@ public class AirplaneService {
         this.airportRepository = airportRepository;
     }
 
+    @Transactional
     public void save(AirplaneAddDTO dto) {
         Optional<Airport> optionalAirport = airportRepository.findByCode(dto.airportCode());
         if (optionalAirport.isPresent()) {

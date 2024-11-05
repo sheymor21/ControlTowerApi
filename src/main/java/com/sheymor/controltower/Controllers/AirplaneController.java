@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Airplanes")
-@Validated
 public class AirplaneController {
 
     private final AirplaneService airplaneService;

@@ -12,6 +12,9 @@ public abstract class AirplaneMapper {
     public static Airplane toAirplane(AirplaneAddDTO dto) {
         Airplane airplane = new Airplane();
         airplane.setCode(dto.code());
+        airplane.setModel(dto.model());
+        airplane.setCompany(dto.company());
+        airplane.setPassengerCapacity(dto.passengerCapacity());
         return airplane;
     }
 
