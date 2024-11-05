@@ -6,11 +6,11 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AirpotCodeNotPresentValidation implements ConstraintValidator<ValidAirportCodeNotPresent, String> {
+public class AirportCodeNotPresentValidation implements ConstraintValidator<ValidAirportCodeNotPresent, String> {
     private final AirportRepository airportRepository;
 
     @Autowired
-    public AirpotCodeNotPresentValidation(AirportRepository airportRepository) {
+    public AirportCodeNotPresentValidation(AirportRepository airportRepository) {
 
         this.airportRepository = airportRepository;
     }
