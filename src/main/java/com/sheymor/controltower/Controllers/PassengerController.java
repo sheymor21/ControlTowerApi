@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Passenger")
+@RequestMapping("Passenger")
 public class PassengerController {
     private final PassengerService passengerService;
 
@@ -21,15 +21,15 @@ public class PassengerController {
         this.passengerService = passengerService;
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<String> createPassenger(@RequestBody PassengerAddDTO passenger) {
         passengerService.save(passenger);
         return new ResponseEntity<>("Passenger created successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/{flightId}")
-    public ResponseEntity<String> updatePassenger(@PathVariable @ValidFlightId  String flightId, @RequestBody PassengerUpdateDTO passenger) {
-        passengerService.updateByPassengerId(flightId, passenger);
+    @PutMapping("/{passengerId}")
+    public ResponseEntity<String> updatePassenger(@PathVariable @ValidFlightId  String passengerId, @RequestBody PassengerUpdateDTO passenger) {
+        passengerService.updateByPassengerId(passengerId, passenger);
         return new ResponseEntity<>("", HttpStatus.OK);
     }
 
@@ -39,7 +39,7 @@ public class PassengerController {
         return new ResponseEntity<>(all,HttpStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Iterable<PassengerGetDTO>> getPassengers(){
         return new ResponseEntity<>(passengerService.findAll(),HttpStatus.OK);
     }

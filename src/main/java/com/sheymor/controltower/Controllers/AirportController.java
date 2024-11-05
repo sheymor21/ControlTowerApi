@@ -23,13 +23,13 @@ public class AirportController {
         this.airportService = airportRepository;
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<String> addAirport(@Valid @RequestBody AirportAddDTO airport) {
         airportService.save(airport);
         return new ResponseEntity<>("Airport added successfully", HttpStatus.CREATED);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Iterable<Airport>> getAllAirports() {
         return new ResponseEntity<>(airportService.findAll(), HttpStatus.OK);
     }
