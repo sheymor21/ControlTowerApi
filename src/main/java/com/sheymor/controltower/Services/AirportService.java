@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Services;
 
-import com.sheymor.controltower.Dto.Airports.CreateAirportDTO;
-import com.sheymor.controltower.Dto.Airports.UpdateAirportDTO;
+import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
+import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Mappers.AirportMapper;
 import com.sheymor.controltower.Repositories.AirportRepository;
@@ -20,7 +20,7 @@ public class AirportService {
         this.airportRepository = airportRepository;
     }
 
-    public void save(CreateAirportDTO dto) {
+    public void save(AirportAddDTO dto) {
         airportRepository.save(AirportMapper.ToAirport(dto));
     }
 
@@ -32,14 +32,14 @@ public class AirportService {
         airportRepository.deleteByCode(code);
     }
 
-    public void updateByAirport(String code, UpdateAirportDTO dto) {
+    public void updateByAirport(String code, AirportUpdateDTO dto) {
         Optional<Airport> optionalAirport = airportRepository.findByCode(code);
         if (optionalAirport.isPresent()) {
             Airport airport = optionalAirport.get();
-            airport.setAirportName(dto.getName());
+            airport.setAirportName(dto.name());
             airport.setCode(code);
-            airport.setAirportCity(dto.getCity());
-            airport.setAirportCountry(dto.getCountry());
+            airport.setAirportCity(dto.city());
+            airport.setAirportCountry(dto.country());
             airportRepository.save(airport);
         } else {
             throw new RuntimeException("incorrect code");

@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Mappers;
 
-import com.sheymor.controltower.Dto.Airplane.CreateAirplaneDTO;
-import com.sheymor.controltower.Dto.Airplane.GetAirplaneDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneAddDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneGetDTO;
 import com.sheymor.controltower.Entities.Airplane;
 import com.sheymor.controltower.Entities.Airport;
 
@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AirplaneMapper {
-    public static Airplane toAirplane(CreateAirplaneDTO dto) {
+    public static Airplane toAirplane(AirplaneAddDTO dto) {
         Airplane airplane = new Airplane();
-        airplane.setCode(dto.getCode());
+        airplane.setCode(dto.code());
         return airplane;
     }
 
-    public static GetAirplaneDTO toGetAirplaneDTO(Airplane airplane) {
-        GetAirplaneDTO dto = new GetAirplaneDTO();
-        dto.setCode(airplane.getCode());
+    public static AirplaneGetDTO toGetAirplaneDTO(Airplane airplane) {
         Airport airport = airplane.getAirport();
-        dto.setAirportCode(airport.getCode());
-        dto.setAirportName(airport.getAirportName());
-        dto.setAirportCity(airport.getAirportCity());
-        dto.setAirportCountry(airport.getAirportCountry());
-        return dto;
+        return new AirplaneGetDTO(
+                airplane.getCode(),
+                airport.getCode(),
+                airport.getAirportName(),
+                airport.getAirportCity(),
+                airport.getAirportCountry()
+        );
     }
 
-    public static List<GetAirplaneDTO> toGetAirplaneDTO(Iterable<Airplane> airplanes) {
-        List<GetAirplaneDTO> dtoList = new ArrayList<>();
+    public static List<AirplaneGetDTO> toGetAirplaneDTO(Iterable<Airplane> airplanes) {
+        List<AirplaneGetDTO> dtoList = new ArrayList<>();
         for (Airplane airplane : airplanes) {
             dtoList.add(toGetAirplaneDTO(airplane));
         }

@@ -1,8 +1,8 @@
 package com.sheymor.controltower.Services;
 
-import com.sheymor.controltower.Dto.Airplane.ChangeAirportDTO;
-import com.sheymor.controltower.Dto.Airplane.CreateAirplaneDTO;
-import com.sheymor.controltower.Dto.Airplane.GetAirplaneDTO;
+import com.sheymor.controltower.Dto.Airplane.AirportChangeDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneAddDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneGetDTO;
 import com.sheymor.controltower.Entities.Airplane;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Mappers.AirplaneMapper;
@@ -27,8 +27,8 @@ public class AirplaneService {
         this.airportRepository = airportRepository;
     }
 
-    public void save(CreateAirplaneDTO dto) {
-        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.getAirportCode());
+    public void save(AirplaneAddDTO dto) {
+        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.airportCode());
         if (optionalAirport.isPresent()) {
             Airplane airplane = AirplaneMapper.toAirplane(dto);
             airplane.setAirport(optionalAirport.get());
@@ -38,14 +38,14 @@ public class AirplaneService {
         }
     }
 
-    public Iterable<GetAirplaneDTO> findAll() {
+    public Iterable<AirplaneGetDTO> findAll() {
         return AirplaneMapper.toGetAirplaneDTO(airplaneRepository.findAll());
     }
 
     @Transactional
-    public void changeAirport(ChangeAirportDTO dto) {
-        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.getAirportCode());
-        Optional<Airplane> optionalAirplane = airplaneRepository.findByCode(dto.getAirplaneCode());
+    public void changeAirport(AirportChangeDTO dto) {
+        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.airplaneCode());
+        Optional<Airplane> optionalAirplane = airplaneRepository.findByCode(dto.airplaneCode());
         if (optionalAirport.isPresent() && optionalAirplane.isPresent()) {
             optionalAirplane.get().setAirport(optionalAirport.get());
             airplaneRepository.save(optionalAirplane.get());

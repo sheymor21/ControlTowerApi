@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Controllers;
 
-import com.sheymor.controltower.Dto.Airports.CreateAirportDTO;
-import com.sheymor.controltower.Dto.Airports.UpdateAirportDTO;
+import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
+import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Services.AirportService;
 import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
@@ -23,13 +23,13 @@ public class AirportController {
         this.airportService = airportRepository;
     }
 
-    @PostMapping
-    public ResponseEntity<String> addAirport(@Valid @RequestBody CreateAirportDTO airport) {
+    @PostMapping("")
+    public ResponseEntity<String> addAirport(@Valid @RequestBody AirportAddDTO airport) {
         airportService.save(airport);
         return new ResponseEntity<>("Airport added successfully", HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<Iterable<Airport>> getAllAirports() {
         return new ResponseEntity<>(airportService.findAll(), HttpStatus.OK);
     }
@@ -41,7 +41,7 @@ public class AirportController {
     }
 
     @PutMapping("/{code}")
-    public ResponseEntity<String> updateAirport(@PathVariable @ValidAirportCodePresent String code, @RequestBody @Valid UpdateAirportDTO dto) {
+    public ResponseEntity<String> updateAirport(@PathVariable @ValidAirportCodePresent String code, @RequestBody @Valid AirportUpdateDTO dto) {
         airportService.updateByAirport(code, dto);
         return new ResponseEntity<>("Airport updated successfully", HttpStatus.OK);
     }

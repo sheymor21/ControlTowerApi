@@ -1,30 +1,30 @@
 package com.sheymor.controltower.Mappers;
 
-import com.sheymor.controltower.Dto.Flight.CreateFlightDTO;
-import com.sheymor.controltower.Dto.Flight.GetFlightsDTO;
-import com.sheymor.controltower.Entities.Flights;
+import com.sheymor.controltower.Dto.Flight.FlightAddDTO;
+import com.sheymor.controltower.Dto.Flight.FlightsGetDTO;
+import com.sheymor.controltower.Entities.Flight;
 
 public abstract class FlightMapper {
-    public static Flights toFlights(CreateFlightDTO dto) {
-        Flights flight = new Flights();
-        flight.setAirplaneCode(dto.getAirplaneCode());
-        flight.setAirportHomeCode(dto.getAirportHomeCode());
-        flight.setDepartureTime(dto.getDepartureTime());
-        flight.setArrivalTime(dto.getArrivalTime());
-        flight.setAirportDestinationCode(dto.getAirportDestinationCode());
+    public static Flight toFlights(FlightAddDTO dto) {
+        Flight flight = new Flight();
+        flight.setAirplaneCode(dto.airplaneCode());
+        flight.setAirportHomeCode(dto.airportHomeCode());
+        flight.setDepartureTime(dto.departureTime());
+        flight.setArrivalTime(dto.arrivalTime());
+        flight.setAirportDestinationCode(dto.airportDestinationCode());
         return flight;
     }
 
 
-    public static GetFlightsDTO toGetFlightDTO(Flights flight) {
-        GetFlightsDTO dto = new GetFlightsDTO();
-        dto.setFlightId(flight.getFlightId());
-        dto.setAirplaneCode(flight.getAirplaneCode());
-        dto.setAirportHomeCode(flight.getAirportHomeCode());
-        dto.setDepartureTime(flight.getDepartureTime());
-        dto.setArrivalTime(flight.getArrivalTime());
-        dto.setStatus(flight.getStatus());
-        dto.setAirportDestinationCode(flight.getAirportDestinationCode());
-        return dto;
+    public static FlightsGetDTO toGetFlightDTO(Flight flight) {
+        return new FlightsGetDTO(
+                flight.getFlightId(),
+                flight.getAirplaneCode(),
+                flight.getAirportHomeCode(),
+                flight.getAirportDestinationCode(),
+                flight.getDepartureTime(),
+                flight.getArrivalTime(),
+                flight.getStatus()
+        );
     }
 }

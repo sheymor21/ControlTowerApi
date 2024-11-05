@@ -1,8 +1,8 @@
 package com.sheymor.controltower.Controllers;
 
-import com.sheymor.controltower.Dto.Airplane.ChangeAirportDTO;
-import com.sheymor.controltower.Dto.Airplane.CreateAirplaneDTO;
-import com.sheymor.controltower.Dto.Airplane.GetAirplaneDTO;
+import com.sheymor.controltower.Dto.Airplane.AirportChangeDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneAddDTO;
+import com.sheymor.controltower.Dto.Airplane.AirplaneGetDTO;
 import com.sheymor.controltower.Services.AirplaneService;
 import com.sheymor.controltower.Validations.Customs.ValidAirplaneCodePresent;
 import jakarta.validation.Valid;
@@ -27,20 +27,20 @@ public class AirplaneController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> createAirplane(@Valid @RequestBody CreateAirplaneDTO dto) {
+    public ResponseEntity<String> createAirplane(@Valid @RequestBody AirplaneAddDTO dto) {
         airplaneService.save(dto);
         return new ResponseEntity<>("Airplane created successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("/ChangeAirport")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> changeAirport(@Valid @RequestBody ChangeAirportDTO dto) {
+    public ResponseEntity<String> changeAirport(@Valid @RequestBody AirportChangeDTO dto) {
         airplaneService.changeAirport(dto);
         return new ResponseEntity<>("Change successfully", HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<GetAirplaneDTO>> getAllAirplanes() {
+    public ResponseEntity<Iterable<AirplaneGetDTO>> getAllAirplanes() {
         return new ResponseEntity<>(airplaneService.findAll(), HttpStatus.OK);
     }
 
