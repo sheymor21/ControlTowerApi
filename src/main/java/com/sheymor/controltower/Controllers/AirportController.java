@@ -1,6 +1,7 @@
 package com.sheymor.controltower.Controllers;
 
 import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
+import com.sheymor.controltower.Dto.Airports.AirportGetDTO;
 import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Services.AirportService;
@@ -9,12 +10,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Airports")
-@Validated
 public class AirportController {
     private final AirportService airportService;
 
@@ -30,8 +29,9 @@ public class AirportController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<Airport>> getAllAirports() {
-        return new ResponseEntity<>(airportService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Iterable<AirportGetDTO>> getAllAirports() {
+        Iterable<AirportGetDTO> airports = airportService.findAll();
+        return new ResponseEntity<>(airports, HttpStatus.OK);
     }
 
     @DeleteMapping("/{code}")

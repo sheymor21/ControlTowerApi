@@ -1,10 +1,12 @@
 package com.sheymor.controltower.Services;
 
 import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
+import com.sheymor.controltower.Dto.Airports.AirportGetDTO;
 import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
 import com.sheymor.controltower.Entities.Airport;
 import com.sheymor.controltower.Mappers.AirportMapper;
 import com.sheymor.controltower.Repositories.AirportRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +22,15 @@ public class AirportService {
         this.airportRepository = airportRepository;
     }
 
+    @Transactional
     public void save(AirportAddDTO dto) {
-        airportRepository.save(AirportMapper.ToAirport(dto));
+        Airport airport = AirportMapper.ToAirport(dto);
+        airportRepository.save(airport);
     }
 
-    public Iterable<Airport> findAll() {
-        return airportRepository.findAll();
+    public Iterable<AirportGetDTO> findAll() {
+        Iterable<Airport> airports = airportRepository.findAll();
+        return AirportMapper.toDTO(airports);
     }
 
     public void deleteByCode(String code) {
