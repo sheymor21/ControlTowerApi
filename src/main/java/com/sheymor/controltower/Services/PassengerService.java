@@ -48,7 +48,7 @@ public class PassengerService {
     public void updateByPassengerId(String passengerId, PassengerUpdateDTO dto) {
         var optionalPassenger = passengerRepository.findById(passengerId);
         if (optionalPassenger.isPresent()) {
-            var passenger = optionalPassenger.get();
+            Passenger passenger = optionalPassenger.get();
             passenger.setFirstName(dto.firstName());
             passenger.setLastName(dto.lastName());
             passengerRepository.save(passenger);
