@@ -22,6 +22,9 @@ public abstract class AirplaneMapper {
         Airport airport = airplane.getAirport();
         return new AirplaneGetDTO(
                 airplane.getCode(),
+                airplane.getModel(),
+                airplane.getCompany(),
+                airplane.getPassengerCapacity(),
                 airport.getCode(),
                 airport.getAirportName(),
                 airport.getAirportCity(),
