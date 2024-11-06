@@ -4,8 +4,11 @@ import com.sheymor.controltower.Dto.Passenger.PassengerAddDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerGetDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerUpdateDTO;
 import com.sheymor.controltower.Dto.Ticket.FlightTicketAddDTO;
+import com.sheymor.controltower.Entities.Flight;
+import com.sheymor.controltower.Entities.FlightTicket;
 import com.sheymor.controltower.Entities.Passenger;
 import com.sheymor.controltower.Mappers.PassengerMapper;
+import com.sheymor.controltower.Mappers.TicketMapper;
 import com.sheymor.controltower.Repositories.PassengerRepository;
 import com.sheymor.controltower.Repositories.TicketRepository;
 import jakarta.transaction.Transactional;
@@ -41,7 +44,8 @@ public class PassengerService {
     }
 
     public void AddPassengerToFlight(FlightTicketAddDTO flightTicketAddDTO) {
-        ticketRepository.saveByIds(flightTicketAddDTO.flightId(), flightTicketAddDTO.passengerId(), flightTicketAddDTO.cabinClass());
+        FlightTicket ticket = TicketMapper.ToModel(flightTicketAddDTO);
+        ticketRepository.save(ticket);
     }
 
     @Transactional
