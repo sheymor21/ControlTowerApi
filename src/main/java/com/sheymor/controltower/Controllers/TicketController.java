@@ -3,6 +3,7 @@ package com.sheymor.controltower.Controllers;
 import com.sheymor.controltower.Dto.Ticket.FlightTicketAddDTO;
 import com.sheymor.controltower.Services.PassengerService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<String> CreateTicket(@RequestBody FlightTicketAddDTO flightTicketAddDTO){
+    public ResponseEntity<String> CreateTicket(@Valid @RequestBody FlightTicketAddDTO flightTicketAddDTO) {
         passengerService.AddPassengerToFlight(flightTicketAddDTO);
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }

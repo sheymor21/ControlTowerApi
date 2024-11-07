@@ -1,11 +1,14 @@
 package com.sheymor.controltower.Entities;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class FlightTicket {
 
     @Id
@@ -18,11 +21,32 @@ public class FlightTicket {
     private Flight flight;
 
     @ManyToOne
-    @JoinColumn(name ="passenger_id")
+    @JoinColumn(name = "passenger_id")
     private Passenger passenger;
 
     @Enumerated(EnumType.STRING)
+    @Setter(AccessLevel.NONE)
     private CabinClass cabinClass;
+
+    public void setCabinClass(String cabinClass) {
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Invalid Cabin Class, only accepted FirstClass, EconomicClass, SecondClass");
+        int n = 0;
+        for (var cabin : FlightTicket.CabinClass.values()) {
+            if (cabin.name().equals(cabinClass)) {
+                this.cabinClass = cabin;
+            }
+
+            if (n == 0) {
+                builder.append(" ").append(cabin.name());
+                n++;
+            } else {
+                builder.append(",").append(cabin.name());
+            }
+        }
+        throw new RuntimeException(builder.toString());
+    }
 
     public enum CabinClass {
         FirstClass,

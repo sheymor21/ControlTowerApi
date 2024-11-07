@@ -1,11 +1,11 @@
 package com.sheymor.controltower.Dto.Ticket;
 
-import com.sheymor.controltower.Entities.FlightTicket;
+import com.sheymor.controltower.Validations.Customs.ValidCabinClass;
 
 public record FlightTicketAddDTO(
         String flightId,
         String passengerId,
-        FlightTicket.CabinClass cabinClass
+        @ValidCabinClass() String cabinClass
 ) {
 
 }
