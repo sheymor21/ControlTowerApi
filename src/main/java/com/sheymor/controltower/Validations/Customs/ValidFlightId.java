@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE_PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidFlightId {
-    String message() default "Invalid airport code";
+    String message() default "Invalid flight id";
 
     Class<?>[] groups() default {};
 
