@@ -5,6 +5,9 @@ import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
 
 import java.util.Date;
 
+/**
+ * DTO for {@link com.sheymor.controltower.Entities.Flight}
+ */
 public record FlightAddDTO(
         @ValidAirplaneCodePresent String airplaneCode,
         @ValidAirportCodePresent(message = "Invalid airportHome Code") String airportHomeCode,
