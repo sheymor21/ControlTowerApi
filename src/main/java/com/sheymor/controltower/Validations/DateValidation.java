@@ -4,29 +4,23 @@ import com.sheymor.controltower.Validations.Customs.ValidDate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.validator.routines.DateValidator;
+import org.apache.logging.log4j.util.Strings;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 @Slf4j
-public class DateValidation implements ConstraintValidator<ValidDate, Date> {
+public class DateValidation implements ConstraintValidator<ValidDate, String> {
 
     @Override
-    public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
-        if (date == null) {
+    public boolean isValid(String date, ConstraintValidatorContext constraintValidatorContext) {
+        if (date == null || date.trim().equals(Strings.EMPTY)) {
+            constraintValidatorContext.disableDefaultConstraintViolation();
+            constraintValidatorContext.buildConstraintViolationWithTemplate("Date cannot be null").addConstraintViolation();
             return false;
         }
+        DateValidator dateValidation = DateValidator.getInstance();
+        return dateValidation.isValid(date,"yyyy/MM/dd-HH:mm");
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(date.toString());
-            return true;
-        } catch (ParseException e) {
-            log.warn(e.toString());
-            return false;
-        }
     }
 }

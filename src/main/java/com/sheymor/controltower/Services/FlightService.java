@@ -12,12 +12,11 @@ import com.sheymor.controltower.Repositories.AirplaneRepository;
 import com.sheymor.controltower.Repositories.AirportRepository;
 import com.sheymor.controltower.Repositories.FlightRepository;
 import jakarta.transaction.Transactional;
+import org.apache.commons.validator.routines.DateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class FlightService {
@@ -99,14 +98,18 @@ public class FlightService {
             Optional<Airplane> optionalAirplane = airplaneRepository.findByCode(dto.airplaneCode());
 
             if (optionalAirplane.isPresent() && optionalAirport.isPresent() && optionalAirportDestination.isPresent()) {
-
+                DateValidator dateValidator = DateValidator.getInstance();
+                String pattern = "yyyy/MM/dd-HH:mm";
+                TimeZone timezone = TimeZone.getTimeZone("UTC");
+                Date departureTime = dateValidator.validate(dto.departureTime(),pattern, timezone);
+                Date arrivalTime=dateValidator.validate(dto.arrivalTime(),pattern, timezone);
                 flight.setAirportHomeCode(dto.airportHomeCode());
                 flight.setAirportDestinationCode(dto.airportDestinationCode());
                 flight.setAirplaneCode(dto.airplaneCode());
                 flight.setAirport(optionalAirport.get());
                 flight.setAirplane(optionalAirplane.get());
-                flight.setArrivalTime(dto.arrivalTime());
-                flight.setDepartureTime(dto.departureTime());
+                flight.setArrivalTime(arrivalTime);
+                flight.setDepartureTime(departureTime);
                 flightRepository.save(flight);
             }
         }
