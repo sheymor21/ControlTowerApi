@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidCabinClass {
 
-    String message() default "Invalid Cabin Class, only accepted ";
+    String message() default "Invalid Cabin Class, only accepted [First,Second,Economic,Business]";
 
     Class<?>[] groups() default {};
 

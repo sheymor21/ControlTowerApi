@@ -31,10 +31,10 @@ public class FlightTicket {
     public void setCabinClass(String cabinClass) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Invalid Cabin Class, only accepted FirstClass, EconomicClass, SecondClass");
+        builder.append("Invalid Cabin Class, only accepted [First,Second,Economic,Business]");
         int n = 0;
         for (var cabin : FlightTicket.CabinClass.values()) {
-            if (cabin.name().equals(cabinClass)) {
+            if (cabin.name().equals(cabinClass.toUpperCase())) {
                 this.cabinClass = cabin;
             }
 
@@ -49,9 +49,10 @@ public class FlightTicket {
     }
 
     public enum CabinClass {
-        FirstClass,
-        SecondClass,
-        EconomicClass,
+        FIRST,
+        SECOND,
+        ECONOMY,
+        BUSINESS,
     }
 
 }

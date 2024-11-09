@@ -10,7 +10,7 @@ public class CabinClassValidation implements ConstraintValidator<ValidCabinClass
     @Override
     public boolean isValid(String cabinClass, ConstraintValidatorContext constraintValidatorContext) {
         for (var s : FlightTicket.CabinClass.values()) {
-            if (s.name().equals(cabinClass)) {
+            if (s.name().equals(cabinClass.toUpperCase())) {
                 return true;
             }
         }
