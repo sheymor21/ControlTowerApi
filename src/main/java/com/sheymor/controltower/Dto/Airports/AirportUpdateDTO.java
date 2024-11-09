@@ -1,11 +1,14 @@
 package com.sheymor.controltower.Dto.Airports;
 
+
+import com.sheymor.controltower.Validations.Customs.CustomNotNull;
+
 /**
  * DTO for {@link com.sheymor.controltower.Entities.Airport}
  */
 public record AirportUpdateDTO(
-        String name,
-        String city,
-        String country
+        @CustomNotNull String name,
+        @CustomNotNull String city,
+        @CustomNotNull String country
 ) {
 }
