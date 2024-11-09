@@ -44,7 +44,7 @@ public class FlightService {
 
             flight.setAirplane(optionalAirplane.get());
             flight.setAirport(optionalAirport.get());
-            flight.setStatus(FlightStatusDTO.Status.WAITING.toString());
+            flight.setStatus(Flight.Status.WAITING);
             flightRepository.save(flight);
         }
 
@@ -82,7 +82,7 @@ public class FlightService {
         Optional<Flight> flights = flightRepository.findById(dto.flightId());
         if (flights.isPresent()) {
             Flight flight = flights.get();
-            flight.setStatus(dto.status().name());
+            flight.setStatus(Flight.Status.valueOf(dto.status().toUpperCase()));
             flightRepository.save(flight);
         } else {
             throw new RuntimeException("incorrect flight id");

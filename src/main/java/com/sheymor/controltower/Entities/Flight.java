@@ -17,8 +17,11 @@ public class Flight {
     private String airportHomeCode;
     private Date departureTime;
     private Date arrivalTime;
-    private String status;
     private String airportDestinationCode;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
 
 
     @ManyToOne
@@ -31,5 +34,13 @@ public class Flight {
 
     @OneToMany(mappedBy = "flight",cascade = CascadeType.ALL)
     private Set<FlightTicket> flightPassenger;
+
+    public enum Status {
+        CANCELLED,
+        COMPLETED,
+        ONGOING,
+        WAITING
+
+    }
 
 }

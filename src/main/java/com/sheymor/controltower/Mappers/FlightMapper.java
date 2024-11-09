@@ -24,7 +24,7 @@ public abstract class FlightMapper {
                 flight.getAirportDestinationCode(),
                 flight.getDepartureTime(),
                 flight.getArrivalTime(),
-                flight.getStatus()
+                flight.getStatus().name().toLowerCase()
         );
     }
 }

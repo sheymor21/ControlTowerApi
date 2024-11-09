@@ -8,13 +8,7 @@ import com.sheymor.controltower.Validations.Customs.ValidFlightId;
 public record FlightStatusDTO(
         @ValidFlightId String flightId,
         Status status
+        String status
 ) {
 
-    public enum Status {
-        CANCELLED,
-        COMPLETED,
-        ONGOING,
-        WAITING
-
-    }
 }
