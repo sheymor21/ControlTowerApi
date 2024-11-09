@@ -2,6 +2,7 @@ package com.sheymor.controltower.Dto.Flight;
 
 import com.sheymor.controltower.Validations.Customs.ValidAirplaneCodePresent;
 import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
+import com.sheymor.controltower.Validations.Customs.ValidDate;
 
 import java.util.Date;
 
@@ -12,8 +13,8 @@ public record FlightAddDTO(
         @ValidAirplaneCodePresent String airplaneCode,
         @ValidAirportCodePresent(message = "Invalid airportHome Code") String airportHomeCode,
         @ValidAirportCodePresent(message = "Invalid airportDestination Code") String airportDestinationCode,
-        Date departureTime,
-        Date arrivalTime
+        @ValidDate Date departureTime,
+        @ValidDate Date arrivalTime
 ) {
 
 }
