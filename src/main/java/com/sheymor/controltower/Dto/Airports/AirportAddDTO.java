@@ -1,6 +1,6 @@
 package com.sheymor.controltower.Dto.Airports;
 
-import com.sheymor.controltower.Validations.Customs.ValidAirportCodeNotPresent;
+import com.sheymor.controltower.Validations.Annotations.ValidAirportCodeNotPresent;
 
 /**
  * DTO for {@link com.sheymor.controltower.Entities.Airport}

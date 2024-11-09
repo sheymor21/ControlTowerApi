@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Dto.Flight;
 
-import com.sheymor.controltower.Validations.Customs.ValidFlightId;
-import com.sheymor.controltower.Validations.Customs.ValidFlightStatus;
+import com.sheymor.controltower.Validations.Annotations.ValidFlightId;
+import com.sheymor.controltower.Validations.Annotations.ValidFlightStatus;
 
 /**
  * DTO for {@link com.sheymor.controltower.Entities.Flight}

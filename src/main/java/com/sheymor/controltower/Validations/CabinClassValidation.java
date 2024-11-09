@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Validations;
 
 import com.sheymor.controltower.Entities.FlightTicket;
-import com.sheymor.controltower.Validations.Customs.ValidCabinClass;
+import com.sheymor.controltower.Validations.Annotations.ValidCabinClass;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

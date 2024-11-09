@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Validations;
 
 import com.sheymor.controltower.Entities.Flight;
-import com.sheymor.controltower.Validations.Customs.ValidFlightStatus;
+import com.sheymor.controltower.Validations.Annotations.ValidFlightStatus;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

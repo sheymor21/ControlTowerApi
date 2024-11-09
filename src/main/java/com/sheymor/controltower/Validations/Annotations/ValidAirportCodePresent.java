@@ -1,6 +1,6 @@
-package com.sheymor.controltower.Validations.Customs;
+package com.sheymor.controltower.Validations.Annotations;
 
-import com.sheymor.controltower.Validations.AirportCodeNotPresentValidation;
+import com.sheymor.controltower.Validations.AirportCodePresentValidation;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -9,10 +9,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = AirportCodeNotPresentValidation.class)
+@Constraint(validatedBy = AirportCodePresentValidation.class)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidAirportCodeNotPresent {
+public @interface ValidAirportCodePresent {
     String message() default "Invalid airport code";
 
     Class<?>[] groups() default {};

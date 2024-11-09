@@ -1,4 +1,4 @@
-package com.sheymor.controltower.Validations.Customs;
+package com.sheymor.controltower.Validations.Annotations;
 
 import com.sheymor.controltower.Validations.PassengerIdValidation;
 import jakarta.validation.Constraint;

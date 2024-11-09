@@ -1,6 +1,6 @@
 package com.sheymor.controltower.Validations;
 
-import com.sheymor.controltower.Validations.Customs.ValidDate;
+import com.sheymor.controltower.Validations.Annotations.ValidDate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.extern.slf4j.Slf4j;

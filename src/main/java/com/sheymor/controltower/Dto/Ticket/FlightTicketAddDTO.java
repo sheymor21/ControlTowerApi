@@ -1,6 +1,6 @@
 package com.sheymor.controltower.Dto.Ticket;
 
-import com.sheymor.controltower.Validations.Customs.ValidCabinClass;
+import com.sheymor.controltower.Validations.Annotations.ValidCabinClass;
 
 /**
  * DTO for {@link com.sheymor.controltower.Entities.FlightTicket}

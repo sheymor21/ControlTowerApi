@@ -1,6 +1,7 @@
-package com.sheymor.controltower.Validations.Customs;
+package com.sheymor.controltower.Validations.Annotations;
 
-import com.sheymor.controltower.Validations.DateValidation;
+
+import com.sheymor.controltower.Validations.FlighIdValidation;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -9,12 +10,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = DateValidation.class)
-@Target({ElementType.FIELD,ElementType.PARAMETER,ElementType.ANNOTATION_TYPE})
+@Constraint(validatedBy = FlighIdValidation.class)
+@Target({ElementType.ANNOTATION_TYPE, ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE_PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidDate {
-
-    String message() default "Invalid Date format, use yyyy/MM/dd-HH:mm";
+public @interface ValidFlightId {
+    String message() default "Invalid flight id";
 
     Class<?>[] groups() default {};
 

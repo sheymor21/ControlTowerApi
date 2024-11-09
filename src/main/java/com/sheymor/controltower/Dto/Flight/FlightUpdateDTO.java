@@ -1,8 +1,8 @@
 package com.sheymor.controltower.Dto.Flight;
 
-import com.sheymor.controltower.Validations.Customs.ValidAirplaneCodePresent;
-import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
-import com.sheymor.controltower.Validations.Customs.ValidDate;
+import com.sheymor.controltower.Validations.Annotations.ValidAirplaneCodePresent;
+import com.sheymor.controltower.Validations.Annotations.ValidAirportCodePresent;
+import com.sheymor.controltower.Validations.Annotations.ValidDate;
 
 
 /**

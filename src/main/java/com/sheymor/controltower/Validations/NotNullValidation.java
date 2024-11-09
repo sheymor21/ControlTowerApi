@@ -1,6 +1,6 @@
 package com.sheymor.controltower.Validations;
 
-import com.sheymor.controltower.Validations.Customs.CustomNotNull;
+import com.sheymor.controltower.Validations.Annotations.CustomNotNull;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.apache.logging.log4j.util.Strings;

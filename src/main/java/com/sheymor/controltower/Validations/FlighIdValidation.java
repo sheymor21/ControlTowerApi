@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Validations;
 
 import com.sheymor.controltower.Repositories.FlightRepository;
-import com.sheymor.controltower.Validations.Customs.ValidFlightId;
+import com.sheymor.controltower.Validations.Annotations.ValidFlightId;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.sheymor.controltower.Validations;
 
 import com.sheymor.controltower.Repositories.AirportRepository;
-import com.sheymor.controltower.Validations.Customs.ValidAirportCodeNotPresent;
+import com.sheymor.controltower.Validations.Annotations.ValidAirportCodeNotPresent;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;

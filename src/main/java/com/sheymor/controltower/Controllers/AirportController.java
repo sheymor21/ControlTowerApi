@@ -4,7 +4,7 @@ import com.sheymor.controltower.Dto.Airports.AirportAddDTO;
 import com.sheymor.controltower.Dto.Airports.AirportGetDTO;
 import com.sheymor.controltower.Dto.Airports.AirportUpdateDTO;
 import com.sheymor.controltower.Services.AirportService;
-import com.sheymor.controltower.Validations.Customs.ValidAirportCodePresent;
+import com.sheymor.controltower.Validations.Annotations.ValidAirportCodePresent;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
