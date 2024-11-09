@@ -8,8 +8,7 @@ import com.sheymor.controltower.Validations.Customs.ValidFlightStatus;
  */
 public record FlightStatusDTO(
         @ValidFlightId String flightId,
-        @ValidFlightStatus
-        String status
+        @ValidFlightStatus String status
 ) {
 
 }
