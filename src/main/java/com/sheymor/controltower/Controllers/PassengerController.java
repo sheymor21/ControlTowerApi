@@ -5,6 +5,7 @@ import com.sheymor.controltower.Dto.Passenger.PassengerGetDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerUpdateDTO;
 import com.sheymor.controltower.Services.PassengerService;
 import com.sheymor.controltower.Validations.Customs.ValidFlightId;
+import com.sheymor.controltower.Validations.Customs.ValidPassengerId;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class PassengerController {
     }
 
     @PutMapping("/{passengerId}")
-    public ResponseEntity<String> updatePassenger(@PathVariable @ValidFlightId  String passengerId, @RequestBody PassengerUpdateDTO passenger) {
+    public ResponseEntity<String> updatePassenger(@PathVariable  @ValidPassengerId String passengerId, @RequestBody PassengerUpdateDTO passenger) {
         passengerService.updateByPassengerId(passengerId, passenger);
         return new ResponseEntity<>("", HttpStatus.OK);
     }
