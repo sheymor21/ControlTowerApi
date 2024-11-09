@@ -45,13 +45,11 @@ public class AirplaneService {
 
     @Transactional
     public void changeAirport(AirportChangeDTO dto) {
-        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.airplaneCode());
+        Optional<Airport> optionalAirport = airportRepository.findByCode(dto.airportCode());
         Optional<Airplane> optionalAirplane = airplaneRepository.findByCode(dto.airplaneCode());
         if (optionalAirport.isPresent() && optionalAirplane.isPresent()) {
             optionalAirplane.get().setAirport(optionalAirport.get());
             airplaneRepository.save(optionalAirplane.get());
-        } else {
-            throw new RuntimeException("incorrect airport code");
         }
 
     }
