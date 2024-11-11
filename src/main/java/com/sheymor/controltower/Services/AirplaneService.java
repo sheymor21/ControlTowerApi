@@ -54,7 +54,6 @@ public class AirplaneService {
 
     }
 
-    @Transactional
     public void deleteAirplane(String code) {
         airplaneRepository.deleteByCode(code);
     }
