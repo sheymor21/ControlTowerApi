@@ -3,14 +3,9 @@ package com.sheymor.controltower.Services;
 import com.sheymor.controltower.Dto.Passenger.PassengerAddDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerGetDTO;
 import com.sheymor.controltower.Dto.Passenger.PassengerUpdateDTO;
-import com.sheymor.controltower.Dto.Ticket.FlightTicketAddDTO;
-import com.sheymor.controltower.Entities.Flight;
-import com.sheymor.controltower.Entities.FlightTicket;
 import com.sheymor.controltower.Entities.Passenger;
 import com.sheymor.controltower.Mappers.PassengerMapper;
-import com.sheymor.controltower.Mappers.TicketMapper;
 import com.sheymor.controltower.Repositories.PassengerRepository;
-import com.sheymor.controltower.Repositories.TicketRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,11 +14,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class PassengerService {
     private final PassengerRepository passengerRepository;
-    private final TicketRepository ticketRepository;
 
-    public PassengerService(PassengerRepository passengerRepository, TicketRepository ticketRepository) {
+    public PassengerService(PassengerRepository passengerRepository) {
         this.passengerRepository = passengerRepository;
-        this.ticketRepository = ticketRepository;
     }
 
     @Transactional
@@ -43,10 +36,6 @@ public class PassengerService {
         return PassengerMapper.ToGetDTO(passengers);
     }
 
-    public void AddPassengerToFlight(FlightTicketAddDTO flightTicketAddDTO) {
-        FlightTicket ticket = TicketMapper.ToModel(flightTicketAddDTO);
-        ticketRepository.save(ticket);
-    }
 
     @Transactional
     public void updateByPassengerId(String passengerId, PassengerUpdateDTO dto) {

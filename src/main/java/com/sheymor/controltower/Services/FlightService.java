@@ -58,14 +58,6 @@ public class FlightService {
         return flightsDTOS;
     }
 
-    public Iterable<FlightsGetDTO> findFlightsByPassengerId(String passengerId) {
-        List<FlightsGetDTO> flightsDTOS = new ArrayList<>();
-        for (Flight item : flightRepository.findFlightsByPassengerId(passengerId)) {
-            flightsDTOS.add(FlightMapper.toGetFlightDTO(item));
-        }
-        return flightsDTOS;
-    }
-
     public Iterable<FlightsGetDTO> findByAirplane(String code) {
         List<FlightsGetDTO> flightsDTOS = new ArrayList<>();
         Iterable<Flight> flights = flightRepository.findByAirplaneCode(code);
@@ -101,8 +93,8 @@ public class FlightService {
                 DateValidator dateValidator = DateValidator.getInstance();
                 String pattern = "yyyy/MM/dd-HH:mm";
                 TimeZone timezone = TimeZone.getTimeZone("UTC");
-                Date departureTime = dateValidator.validate(dto.departureTime(),pattern, timezone);
-                Date arrivalTime=dateValidator.validate(dto.arrivalTime(),pattern, timezone);
+                Date departureTime = dateValidator.validate(dto.departureTime(), pattern, timezone);
+                Date arrivalTime = dateValidator.validate(dto.arrivalTime(), pattern, timezone);
                 flight.setAirportHomeCode(dto.airportHomeCode());
                 flight.setAirportDestinationCode(dto.airportDestinationCode());
                 flight.setAirplaneCode(dto.airplaneCode());
