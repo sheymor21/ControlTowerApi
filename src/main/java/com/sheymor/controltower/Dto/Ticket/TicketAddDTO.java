@@ -6,7 +6,7 @@ import com.sheymor.controltower.Validations.Annotations.ValidPassengerLimit;
 /**
  * DTO for {@link com.sheymor.controltower.Entities.FlightTicket}
  */
-public record FlightTicketAddDTO(
+public record TicketAddDTO(
         @ValidPassengerLimit String flightId,
         String passengerId,
         @ValidCabinClass String cabinClass
