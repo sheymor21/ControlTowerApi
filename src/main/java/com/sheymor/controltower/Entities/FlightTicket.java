@@ -36,6 +36,7 @@ public class FlightTicket {
         for (var cabin : FlightTicket.CabinClass.values()) {
             if (cabin.name().equals(cabinClass.toUpperCase())) {
                 this.cabinClass = cabin;
+                return;
             }
 
             if (n == 0) {
